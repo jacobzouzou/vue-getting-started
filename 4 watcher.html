@@ -7,31 +7,30 @@
 </head>
 <body>
     <div id="app">
-        <my-watcher></my-watcher>
+        <name-watcher></name-watcher>
     </div>
     <script src="https://unpkg.com/vue"></script>
     <script>
-        //use local component
-        const myWatcher={
+        const NameWatcher={
             data(){
                 return {
-                    firstName:"Jacob"
+                    name:"Jacob ZOUZOU"
                 }
             },
             methods:{
                 changeName:function(){
-                    this.firstName="Yves";
+                    this.name="Yves LEPERE";
                 }
             },
             template:`
                 <div>
-                    <p>My name is {{firstName}}</p>                                
+                    <p>My name is: {{name}}</p>                                
                     <button class="button" @click="changeName()">Change Name</button>
                 </div>
             `,
             watch:{
-                //Monitoring data name "firstName"
-                firstName:function(newValue,oldValue){
+                //Monitoring data: "name"
+                name:function(newValue,oldValue){
                     alert(`Old name : ${oldValue }, New name: ${newValue}`);
                 }
             }
@@ -40,7 +39,7 @@
         //root component
         new Vue({
             el:"#app",
-            components:{myWatcher}
+            components:{NameWatcher}
         });
 
     </script>

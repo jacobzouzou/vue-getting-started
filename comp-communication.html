@@ -1,59 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Component communication</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <div id="app">
-        <home-page></home-page>
+      <home-page text-color="orange"></home-page>
     </div>
+
     <script src="https://unpkg.com/vue"></script>
+    
     <script>
-        //use local component named : page
-        const car = {
-            template: `
-                <h1 @click="handleClick" :style="{color:color}">My car</h1>
+      const CourseTheme = {
+        template: `
+                <h1 @click="handleClick" :style="{color:color}">Component communication</h1>
             `,
-            props: ["color"],
-            methods: {
-                handleClick: function () {
-                    this.$emit('showColor', this.color);
-                }
-            }
-        };
-        
-        //global component
-        Vue.component("homePage",{
-            template: `
+        props: ["color"],
+        methods: {
+          handleClick: function () {
+            //props must take "this" script
+            this.$emit("showColor", this.color);
+          },
+        },
+      };
+
+      //global component
+      Vue.component("HomePage", {
+        props: ["textColor"],
+        template: `
                 <div>
-                    <car @showColor="displayColorName" :color="textColor"></car>
+                    <course-theme @showColor="displayColorName" :color="textColor"></course-theme>
                 </div>
             `,
-            data() {
-                return {
-                    textColor: "darkblue"
-                }
-            },
-            components: { car },
-            methods: {
-                displayColorName: function (color) {
-                    alert(color);
-                }
-            }
-        }) ;
+        components: { CourseTheme },
+        methods: {
+          displayColorName: function (color) {
+            alert(color);
+          },
+        },
+      });
 
-        //root component
-        new Vue({
-            el: "#app",
-            components: { car }
-        });
-
+      //root component
+      new Vue({
+        el: "#app",
+      });
     </script>
-
-</body>
-
+  </body>
 </html>

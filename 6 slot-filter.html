@@ -13,12 +13,11 @@
     </div>
     <script src="https://unpkg.com/vue"></script>
     <script>
-        //use local component named : page
-        const page = {
+        const Page = {
             template: `
                 <div>
                     <div>
-                        <slot name="sidebar"></slot>
+                        <slot name="header"></slot>
                     </div>   
                     <div>						
                         <slot></slot>
@@ -26,14 +25,14 @@
                 </div>
             `,
         };
-        const homePage = {
+        const HomePage = {
             template: `
                 <page>
-                   <!-- Go in default slot -->
+                   <!-- Go in slot: default -->
                     <p>Page content</p>     
 
-                    <!-- Go in side bar slot -->
-                    <div slot="sidebar">
+                    <!-- Go in slot: header -->
+                    <div slot="header">
                         <h1>{{pageTitle | upper}}</h1>
                         <ul >
                             <li>Home</li>
@@ -47,15 +46,12 @@
                     title:"Slot & filter"
                 }
             },
-            components:{page},
-            props:["size"],
-            methods:{},
+            components:{Page},
             computed:{
                 pageTitle:function(){
                     return this.title;
                 }
             },
-            watch:{},
             filters:{
                 upper:function(value){
                     return value.toUpperCase();
@@ -68,7 +64,7 @@
         //root component
         new Vue({
             el: "#app",
-            components: { homePage }
+            components: { HomePage }
         });
 
     </script>

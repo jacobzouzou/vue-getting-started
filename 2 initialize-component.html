@@ -1,26 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<body>
+  <body>
     <div id="app">
-        <!-- kebab-casing -->
-        <!--Pass data to child component (user-name) by using props -->
-        <user-name name="Jacob ZOUZOU"></user-name>
+      <!-- component name guid in HTML: kebab-casing -->
+      <!--Pass data to child component, "user-name", by using props: "name" -->
+      <user-name name="Jacob ZOUZOU"></user-name>
     </div>
-</body>
-<script src="https://unpkg.com/vue"></script>
-<script>
-    //Initialize other component that main component; here global component
-     //Pascal Casing: UserName in script
-    //kebab-case: user-name in
+  </body>
+  <script src="https://unpkg.com/vue"></script>
+  <script>
+    //Global component: no need to declare in parent ot use it
+    //Component naming guide in script "Pascal Casing", in HTML "kebab-casing"
     Vue.component("UserName", {
-        props: ["name"],
-        //display prop value
-        template: "<h2>{{name}}</h2>"
+      props: ["name"],
+      template: "<h2>{{name}}</h2>", //display prop "name" value
     });
 
-    //Main component: not corresponding tag name
-    new Vue({el:"#app"});
-</script>
-
+    //Main component: not coresponding tag name
+    new Vue({
+      el: "#app",
+    });
+  </script>
 </html>

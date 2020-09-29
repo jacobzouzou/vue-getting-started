@@ -10,20 +10,20 @@
 <script src="https://unpkg.com/vue"></script>
 
 <script>
-    //local component, set to variable
-    const userName = {
+    //local component: need to be declared in parent before use it
+    const UserName = {
         props: ["name"],
         template: `
             <div>
-                <h2>{{name.toLowerCase()}}</h2>
-                <h3 v-text='name'></h3>
+                <h2 v-text='name'></h2>
+                <h3>{{name.toLowerCase()}}</h3>
             </div>
         `
     }
 
     new Vue({
         el: "#app",
-        components: { userName }
+        components: { UserName }
     });
 </script>
 
