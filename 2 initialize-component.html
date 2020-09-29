@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <div id="app">
+        <!-- kebab-casing -->
+        <!--Pass data to child component (user-name) by using props -->
+        <user-name name="Jacob ZOUZOU"></user-name>
+    </div>
+</body>
+<script src="https://unpkg.com/vue"></script>
+<script>
+    //Initialize other component that main component; here global component
+     //Pascal Casing: UserName in script
+    //kebab-case: user-name in
+    Vue.component("UserName", {
+        props: ["name"],
+        //display prop value
+        template: "<h2>{{name}}</h2>"
+    });
+
+    //Main component: not corresponding tag name
+    new Vue({el:"#app"});
+</script>
+
+</html>

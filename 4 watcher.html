@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <my-watcher></my-watcher>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+        //use local component
+        const myWatcher={
+            data(){
+                return {
+                    firstName:"Jacob"
+                }
+            },
+            methods:{
+                changeName:function(){
+                    this.firstName="Yves";
+                }
+            },
+            template:`
+                <div>
+                    <p>My name is {{firstName}}</p>                                
+                    <button class="button" @click="changeName()">Change Name</button>
+                </div>
+            `,
+            watch:{
+                //Monitoring data name "firstName"
+                firstName:function(newValue,oldValue){
+                    alert(`Old name : ${oldValue }, New name: ${newValue}`);
+                }
+            }
+        }
+
+        //root component
+        new Vue({
+            el:"#app",
+            components:{myWatcher}
+        });
+
+    </script>
+    <style>
+        .button{
+            width: 150px;
+            color: gray;
+        }
+    </style>
+</body>
+</html>

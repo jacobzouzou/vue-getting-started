@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<body>
+    <div id="app">
+        <!--use kebab-casing in html -->
+        <user-name name="Alexis GODA" v-once></user-name>
+    </div>
+</body>
+<script src="https://unpkg.com/vue"></script>
+
+<script>
+    //local component, set to variable
+    const userName = {
+        props: ["name"],
+        template: `
+            <div>
+                <h2>{{name.toLowerCase()}}</h2>
+                <h3 v-text='name'></h3>
+            </div>
+        `
+    }
+
+    new Vue({
+        el: "#app",
+        components: { userName }
+    });
+</script>
+
+</html>

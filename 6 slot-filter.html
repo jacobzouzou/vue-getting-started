@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>computed property</title>
+</head>
+
+<body>
+    <div id="app">
+        <home-page></home-page>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+        //use local component named : page
+        const page = {
+            template: `
+                <div>
+                    <div>
+                        <slot name="sidebar"></slot>
+                    </div>   
+                    <div>						
+                        <slot></slot>
+                    </div>
+                </div>
+            `,
+        };
+        const homePage = {
+            template: `
+                <page>
+                   <!-- Go in default slot -->
+                    <p>Page content</p>     
+
+                    <!-- Go in side bar slot -->
+                    <div slot="sidebar">
+                        <h1>{{pageTitle | upper}}</h1>
+                        <ul >
+                            <li>Home</li>
+                            <li>Contact</li>
+                        </ul>
+                    </div>
+                </page>
+            `,
+            data(){
+                return {
+                    title:"Slot & filter"
+                }
+            },
+            components:{page},
+            props:["size"],
+            methods:{},
+            computed:{
+                pageTitle:function(){
+                    return this.title;
+                }
+            },
+            watch:{},
+            filters:{
+                upper:function(value){
+                    return value.toUpperCase();
+                }
+            }
+        };
+
+
+
+        //root component
+        new Vue({
+            el: "#app",
+            components: { homePage }
+        });
+
+    </script>
+    <style>
+        .button {
+            width: 150px;
+            color: gray;
+        }
+    </style>
+</body>
+
+</html>

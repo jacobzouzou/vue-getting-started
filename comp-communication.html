@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Component communication</title>
+</head>
+
+<body>
+    <div id="app">
+        <home-page></home-page>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+        //use local component named : page
+        const car = {
+            template: `
+                <h1 @click="handleClick" :style="{color:color}">My car</h1>
+            `,
+            props: ["color"],
+            methods: {
+                handleClick: function () {
+                    this.$emit('showColor', this.color);
+                }
+            }
+        };
+        
+        //global component
+        Vue.component("homePage",{
+            template: `
+                <div>
+                    <car @showColor="displayColorName" :color="textColor"></car>
+                </div>
+            `,
+            data() {
+                return {
+                    textColor: "darkblue"
+                }
+            },
+            components: { car },
+            methods: {
+                displayColorName: function (color) {
+                    alert(color);
+                }
+            }
+        }) ;
+
+        //root component
+        new Vue({
+            el: "#app",
+            components: { car }
+        });
+
+    </script>
+
+</body>
+
+</html>
