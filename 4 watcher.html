@@ -14,23 +14,23 @@
         const NameWatcher={
             data(){
                 return {
-                    name:"Jacob ZOUZOU"
+                    fullName:"Jacob ZOUZOU"
                 }
             },
             methods:{
                 changeName:function(){
-                    this.name="Yves LEPERE";
+                    this.fullName="Yves LEPERE";
                 }
             },
             template:`
                 <div>
-                    <p>My name is: {{name}}</p>                                
+                    <p>My name is {{fullName}}</p>                                
                     <button class="button" @click="changeName()">Change Name</button>
                 </div>
             `,
             watch:{
-                //Monitoring data: "name"
-                name:function(newValue,oldValue){
+                //Monitoring data named "fullName"
+                fullName:function(newValue,oldValue){
                     alert(`Old name : ${oldValue }, New name: ${newValue}`);
                 }
             }
