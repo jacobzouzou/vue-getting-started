@@ -1,52 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Component communication</title>
-  </head>
+    <title>Component Communication</title>
+</head>
 
-  <body>
+<body>
     <div id="app">
-      <home-page text-color="red"></home-page>
+        <home-page text-color="green"></home-page>
     </div>
 
     <script src="https://unpkg.com/vue"></script>
-    
-    <script>
-      const CourseTheme = {
-        template: `
-                <h1 @click="handleClick" :style="{color:color}">Component communication</h1>
-            `,
-        props: ["color"],
-        methods: {
-          handleClick: function () {
-            //props must take "this" script
-            this.$emit("showColor", this.color);
-          },
-        },
-      };
 
-      //global component
-      Vue.component("HomePage", {
-        props: ["textColor"],
-        template: `
+    <script>
+        //Local component
+        const CourseTheme = {
+            template: `
+                <h1 @click="handleClick" :style="{color:color}">Component Communication</h1>
+            `,
+            props: ["color"],
+            methods: {
+                handleClick: function() {
+                    //props must take "this" script
+                    this.$emit("showColor", this.color);
+                },
+            },
+        };
+
+        //global component
+        Vue.component("HomePage", {
+            props: ["textColor"],
+            template: `
                 <div>
                     <course-theme @showColor="displayColorName" :color="textColor"></course-theme>
                 </div>
             `,
-        components: { CourseTheme },
-        methods: {
-          displayColorName: function (color) {
-            alert(color);
-          },
-        },
-      });
+            components: {
+                CourseTheme
+            },
+            methods: {
+                displayColorName: function(color) {
+                    alert(color);
+                },
+            },
+        });
 
-      //root component
-      new Vue({
-        el: "#app",
-      });
+        //root component
+        new Vue({
+            el: "#app",
+        });
     </script>
-  </body>
+</body>
+
 </html>

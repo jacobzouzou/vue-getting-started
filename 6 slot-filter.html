@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>computed property</title>
+    <title>Slot and Filter</title>
 </head>
 
 <body>
@@ -13,6 +13,7 @@
     </div>
     <script src="https://unpkg.com/vue"></script>
     <script>
+        //use slot for layout
         const Page = {
             template: `
                 <div>
@@ -25,15 +26,16 @@
                 </div>
             `,
         };
+        //Use Page component
         const HomePage = {
             template: `
                 <page>
-                   <!-- Go in slot: default -->
-                    <p>Page content</p>     
+                   <!-- Go to default slot -->
+                    <h3>Page Content</h3>     
 
-                    <!-- Go in slot: header -->
+                    <!-- Go to header slot  -->
                     <div slot="header">
-                        <h1>{{pageTitle | upper}}</h1>
+                        <h2>{{pageTitle | upper}}</h2>
                         <ul >
                             <li>Home</li>
                             <li>Contact</li>
@@ -41,32 +43,34 @@
                     </div>
                 </page>
             `,
-            data(){
+            data() {
                 return {
-                    title:"Slot & filter"
+                    title: "Slot & filter"
                 }
             },
-            components:{Page},
-            computed:{
-                pageTitle:function(){
+            components: {
+                Page
+            },
+            computed: {
+                pageTitle: function() {
                     return this.title;
                 }
             },
-            filters:{
-                upper:function(value){
+            filters: {
+                upper: function(value) {
                     return value.toUpperCase();
                 }
             }
         };
 
 
-
         //root component
         new Vue({
             el: "#app",
-            components: { HomePage }
+            components: {
+                HomePage
+            }
         });
-
     </script>
     <style>
         .button {
