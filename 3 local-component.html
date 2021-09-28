@@ -3,7 +3,6 @@
 
 <body>
     <div id="app">
-        <!--use kebab-casing in html -->
         <user-name name="Alexis GODA" v-once></user-name>
     </div>
 </body>
@@ -16,14 +15,16 @@
         template: `
             <div>
                 <h2 v-text='name'></h2>
-                <h3>{{name.toLowerCase()}}</h3>
+                <h3>{{name.toUpperCase()}}</h3>
             </div>
         `
     }
 
     new Vue({
-        el: "#app",
-        components: { UserName }
+        el: "#app", //target
+        components: {
+            UserName
+        }
     });
 </script>
 

@@ -1,36 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <div id="app">
         <name-watcher></name-watcher>
     </div>
     <script src="https://unpkg.com/vue"></script>
     <script>
-        const NameWatcher={
-            data(){
-                return {
-                    fullName:"Jacob ZOUZOU"
-                }
-            },
-            methods:{
-                changeName:function(){
-                    this.fullName="Yves LEPERE";
-                }
-            },
-            template:`
+        //local component
+        const NameWatcher = {
+            template: `
                 <div>
                     <p>My name is {{fullName}}</p>                                
                     <button class="button" @click="changeName()">Change Name</button>
                 </div>
             `,
-            watch:{
+            data() {
+                return {
+                    fullName: "Jacob ZOUZOU"
+                }
+            },
+            methods: {
+                changeName: function() {
+                    this.fullName = "Yves LEPERE";
+                }
+            },
+            watch: {
                 //Monitoring data named "fullName"
-                fullName:function(newValue,oldValue){
+                fullName: function(newValue, oldValue) {
                     alert(`Old name : ${oldValue }, New name: ${newValue}`);
                 }
             }
@@ -38,16 +41,18 @@
 
         //root component
         new Vue({
-            el:"#app",
-            components:{NameWatcher}
+            el: "#app",
+            components: {
+                NameWatcher
+            }
         });
-
     </script>
     <style>
-        .button{
+        .button {
             width: 150px;
             color: gray;
         }
     </style>
 </body>
+
 </html>
